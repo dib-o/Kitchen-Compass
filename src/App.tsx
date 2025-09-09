@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 
 type Recipe = {
@@ -98,10 +98,6 @@ const App = () => {
   const [selectedRecipe, setSelectedRecipe] = useState<SelectedRecipe | null>(
     null
   );
-
-  const [cuisine, setCuisine] = useState("");
-  const [dishType, setDishType] = useState("");
-  const [diet, setDiet] = useState("");
 
   const [similarRecipes, setSimilarRecipes] = useState<SimilarRecipe[]>([]);
   const [error, setError] = useState("");
@@ -233,7 +229,6 @@ const App = () => {
   };
 
   const searchRecipesbyCuisine = async (type: string) => {
-    setCuisine(type);
     setSelectedRecipe(null);
     GoRight();
     try {
@@ -248,7 +243,6 @@ const App = () => {
   };
 
   const searchRecipesbyDishType = async (type: string) => {
-    setDishType(type);
     setSelectedRecipe(null);
     GoRight();
     try {
@@ -263,7 +257,6 @@ const App = () => {
   };
 
   const searchRecipesbyDiet = async (type: string) => {
-    setDiet(type);
     setSelectedRecipe(null);
     GoRight();
     try {
@@ -336,7 +329,7 @@ const App = () => {
         {!selectedRecipe && search && (
           <div className="right-body">
             <div className="right-body-title">
-              <h2>{recipes.length} results</h2>
+              <h2>{recipes.length} results {error && <p>Error:{error}</p>}</h2>
             </div>
             <div className="search-results">
               {recipes.map((r) => (
